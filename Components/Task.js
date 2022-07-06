@@ -20,10 +20,23 @@ const Task = (props) => {
 
 
 const styles = StyleSheet.create({
-    item: {},
-    itemLeft: {},
+    item: {
+        backgroundColor: "#FFF",
+        padding: 15,
+        borderRadius: 18,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: "space-between",
+        marginBottom: 20,
+    },
+    itemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap'
+    },
     itemText: {},
-    square: {}
+    square: {},
+
    
    
         
