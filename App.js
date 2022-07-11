@@ -1,15 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, KeyboardAvoidingView,Platform, TextInput,TouchableOpacity } from 'react-native';
 import Task from './Components/Task';
 
 
 export default function App() {
+  const [task, setTask] = useState();
   return (
     <View style={styles.container}>
       
       <View style={styles.taskWrapper}>
 
         <Text style={styles.sectionTitle}>Today's Task</Text>
+
         <View  styles={styles.items}>
 
           {/* This is the task */}
@@ -19,6 +22,22 @@ export default function App() {
 
         </View>
       </View>
+
+     {/* Write a Task  */}
+      
+      <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.writeTaskWrapper}
+      >
+      
+        <TextInput style={styles.input} placeholder={"Write a Task"}></TextInput>
+        <TouchableOpacity>
+        <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
+          </View>
+      
+        </TouchableOpacity>
+    </KeyboardAvoidingView>
       
     </View>
   );
@@ -37,5 +56,38 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold'
+  },
+  
+  items: {
+    marginTop: 30,
+  },
+  writeTaskWrapper: {
+    position: 'absolute',
+    bottom: 60,
+    width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems:'center'
+  },
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    width: 250,
+    borderRadius: 60,
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
+    backgroundColor: '#fff'
+
+  },
+  addWrapper: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#fff',
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    
   }
+
+ 
 });
