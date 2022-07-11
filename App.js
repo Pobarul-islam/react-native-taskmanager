@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView,Platform, TextInput,TouchableOpacity } from 'react-native';
+import { Keyboard } from 'react-native-web';
 import Task from './Components/Task';
 
 
@@ -8,8 +9,13 @@ export default function App() {
   const [task, setTask] = useState();
   const[taskItems, setTaskItems] = useState([]);
   const handleTask = () => {
-    setTaskItems([...taskItems.tasl])
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, task])
     setTask(null)
+  }
+
+  const completeTask = () => {
+    
   }
   return (
     <View style={styles.container}>
@@ -20,6 +26,13 @@ export default function App() {
 
         <View  styles={styles.items}>
 
+          {/* This is where the task will go  */}
+          {
+            taskItems.map((item, index) => {
+              return <Task key={index} text={item} />
+              
+            })
+          }
           {/* This is the task */}
           <Task text={'Task 1'}></Task>
           <Task text={'Task 2'}></Task>
