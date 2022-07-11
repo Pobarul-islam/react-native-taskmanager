@@ -6,6 +6,11 @@ import Task from './Components/Task';
 
 export default function App() {
   const [task, setTask] = useState();
+  const[taskItems, setTaskItems] = useState([]);
+  const handleTask = () => {
+    setTaskItems([...taskItems.tasl])
+    setTask(null)
+  }
   return (
     <View style={styles.container}>
       
@@ -30,8 +35,8 @@ export default function App() {
           style={styles.writeTaskWrapper}
       >
       
-        <TextInput style={styles.input} placeholder={"Write a Task"}></TextInput>
-        <TouchableOpacity>
+        <TextInput style={styles.input} placeholder={"Write a Task"} value={task} onChangeText={text=> setTask(text)}></TextInput>
+        <TouchableOpacity onPress={()=> handleTask()}>
         <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
           </View>
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
   },
   writeTaskWrapper: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 30,
     width: "100%",
     flexDirection: 'row',
     justifyContent: 'space-around',
